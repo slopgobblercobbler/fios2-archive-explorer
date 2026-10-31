@@ -1,0 +1,23 @@
+{
+  "name": "fios2-archive-explorer",
+  "version": "1.0.0",
+  "description": "Interactive client-side PlayStation FIOS2 archive and filesystem explorer, PFS inspector, and overlay mount simulator.",
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  },
+  "keywords": [
+    "fios2",
+    "playstation",
+    "ps5",
+    "psarc",
+    "pfs",
+    "filesystem",
+    "overlay",
+    "oodle",
+    "decompressor",
+    "hex-viewer"
+  ],
+  "author": "slopgobblercobbler",
+  "license": "MIT"
+}

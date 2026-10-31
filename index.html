@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FIOS2 Archive Explorer — PS5 PFS & Overlay Inspector</title>
+  <meta name="description" content="Interactive client-side PlayStation FIOS2 archive explorer, PFS filesystem inspector, Oodle decompressor analyzer, and overlay mount simulator.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📦</text></svg>">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="brand">
+      <div class="brand-icon">FIOS2</div>
+      <div class="brand-text">
+        <h1>FIOS2 Archive Explorer</h1>
+        <div class="brand-subtitle">PlayStation File System (PFS) & libSceFios2 Overlay Inspector</div>
+      </div>
+    </div>
+
+    <div class="header-controls">
+      <div class="control-group">
+        <label for="sample-select">Preset:</label>
+        <select id="sample-select" aria-label="Select Sample Preset">
+          <option value="SAMPLE_1_PSARC_OODLE" selected>Sample 1: PS5 Game Title Update (PSARC + Oodle)</option>
+          <option value="SAMPLE_2_PFS_CONTAINER">Sample 2: PS5 PFS Encrypted Container Image</option>
+          <option value="SAMPLE_3_OVERLAY_PRESET">Sample 3: Multi-Layer Overlay Mount (Base + Patch + DLC)</option>
+          <option value="SAMPLE_4_CORRUPT_ARCHIVE">Sample 4: Corrupted FIOS2 Archive (Auditor Negative Test)</option>
+        </select>
+        <button id="btn-load-preset" class="btn btn-sm btn-primary">Load</button>
+      </div>
+
+      <div style="display: flex; gap: 8px;">
+        <button id="btn-export-bin" class="btn btn-sm" title="Download current raw archive binary">Export .BIN</button>
+        <button id="btn-export-json" class="btn btn-sm" title="Export parsed inspection report as JSON">Export JSON</button>
+      </div>
+
+      <a href="https://github.com/slopgobblercobbler/fios2-archive-explorer" target="_blank" rel="noopener noreferrer" class="btn btn-sm">
+        <svg height="16" width="16" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+        GitHub
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <div id="alert-container" style="display: none;"></div>
+
+    <!-- Dual Input Section -->
+    <section class="input-section">
+      <div class="input-tabs">
+        <button class="input-tab active" data-input-mode="file">Upload Archive / PFS Image</button>
+        <button class="input-tab" data-input-mode="hex">Paste Hex / Base64 Stream</button>
+      </div>
+
+      <div id="dropzone-container">
+        <div id="dropzone" class="dropzone">
+          <div class="dropzone-icon">📦</div>
+          <div class="dropzone-text">Drag & drop PSARC archive (.psarc, .bin, .dat) or PFS image, or click to browse</div>
+          <div class="dropzone-hint">Supports PS3/PS4/PS5 PSARC v1.4, Oodle/Kraken/ZLIB compression, and PFS v1/v2 images. 100% Client-Side.</div>
+          <input type="file" id="file-input" style="display: none;">
+        </div>
+        <div id="file-info-label" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-cyan); margin-top: 8px;"></div>
+      </div>
+
+      <div id="hex-input-container" style="display: none; flex-direction: column; gap: 8px;">
+        <textarea id="hex-textarea" class="hex-textarea" placeholder="Paste PSARC or PFS hex bytecode (supports space-separated bytes, C arrays, or raw hex)"></textarea>
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+          <div class="preset-chips" style="margin-top: 0;">
+            <span class="preset-label">Presets:</span>
+            <span class="chip" data-sample="SAMPLE_1_PSARC_OODLE">PSARC + Oodle</span>
+            <span class="chip" data-sample="SAMPLE_2_PFS_CONTAINER">PFS Container</span>
+            <span class="chip" data-sample="SAMPLE_3_OVERLAY_PRESET">Overlay Mount</span>
+            <span class="chip" data-sample="SAMPLE_4_CORRUPT_ARCHIVE">Corrupt Archive</span>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button id="btn-format-hex" class="btn btn-sm">Format Hex</button>
+            <button id="btn-clear-hex" class="btn btn-sm">Clear</button>
+            <button id="btn-decode-hex" class="btn btn-sm btn-primary">Parse Buffer</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Telemetry Bar -->
+    <section class="telemetry-bar">
+      <div class="stat-card">
+        <div class="stat-label">Container Format</div>
+        <div id="stats-format" class="stat-value" style="color: var(--accent-cyan);">PSARC v1.4</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">File / Inode Count</div>
+        <div id="stats-files" class="stat-value">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Total Uncompressed</div>
+        <div id="stats-uncompressed" class="stat-value">0 B</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Compressed (Savings %)</div>
+        <div id="stats-compressed" class="stat-value" style="color: #6ee7b7;">0 B (0.0%)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">libSceFios2 Integrity</div>
+        <div id="stats-audit" class="stat-value ok">PASS</div>
+      </div>
+    </section>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs" aria-label="Workbench Views">
+      <button class="nav-tab active" data-target="tab-tree">📁 Directory Tree & Inspector</button>
+      <button class="nav-tab" data-target="tab-partition">🧱 Partition & Chunk Map</button>
+      <button class="nav-tab" data-target="tab-header">🔍 Header & Superblock</button>
+      <button class="nav-tab" data-target="tab-overlay">🔀 FIOS2 Overlay Simulator</button>
+      <button class="nav-tab" data-target="tab-hex">🔬 Hex Viewer</button>
+      <button class="nav-tab" data-target="tab-audit">🛡️ Security & Auditor Report</button>
+    </nav>
+
+    <!-- Tab 1: Directory Tree & File Inspector -->
+    <section id="tab-tree" class="tab-panel active">
+      <div class="split-view">
+        <div class="panel-card">
+          <div class="panel-header">
+            <span class="panel-title">Archive Directory Tree</span>
+            <input type="text" id="tree-search" placeholder="Filter files..." style="width: 140px; padding: 3px 8px; font-size: 0.75rem;">
+          </div>
+          <div id="tree-view" class="tree-container"></div>
+        </div>
+
+        <div class="panel-card">
+          <div class="panel-header">
+            <span class="panel-title">File Details & Decompressor Info</span>
+            <button id="btn-jump-hex" class="btn btn-sm">Jump to Hex Offset</button>
+          </div>
+          <div id="file-inspector-content" style="display: flex; flex-direction: column; gap: 14px;">
+            <div class="details-grid" id="file-details-grid">
+              <div class="detail-item"><div class="detail-label">File Path</div><div id="fi-path" class="detail-value">-</div></div>
+              <div class="detail-item"><div class="detail-label">Uncompressed Size</div><div id="fi-size" class="detail-value">-</div></div>
+              <div class="detail-item"><div class="detail-label">Compressed Size</div><div id="fi-comp-size" class="detail-value">-</div></div>
+              <div class="detail-item"><div class="detail-label">Compression Ratio</div><div id="fi-ratio" class="detail-value">-</div></div>
+              <div class="detail-item"><div class="detail-label">Data Offset</div><div id="fi-offset" class="detail-value">-</div></div>
+              <div class="detail-item"><div class="detail-label">Decompressor Min Buffer</div><div id="fi-min-buffer" class="detail-value">-</div></div>
+            </div>
+
+            <div>
+              <div style="font-size: 0.78rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px;">
+                Chunk Decompression Table (64 KB Block Chunks)
+              </div>
+              <div class="data-table-container" style="max-height: 240px; overflow-y: auto;">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Chunk Offset</th>
+                      <th>Compressed Size</th>
+                      <th>Uncompressed Target</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="chunks-table-body">
+                    <tr><td colspan="5" style="text-align: center; color: var(--text-dim);">Select a file from the tree</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 2: Partition & Chunk Map -->
+    <section id="tab-partition" class="tab-panel">
+      <div class="panel-card">
+        <div class="panel-header">
+          <span class="panel-title">Container Memory Layout Map</span>
+          <span id="partition-legend" style="font-size: 0.75rem; color: var(--text-muted);"></span>
+        </div>
+        <div id="partition-bar" class="partition-bar"></div>
+        <div class="details-grid" id="partition-metrics"></div>
+
+        <div style="margin-top: 12px;">
+          <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px;">
+            Decompression Chunk Grid (Hover to inspect)
+          </div>
+          <div id="chunk-grid" class="chunk-grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 3: Header & Superblock -->
+    <section id="tab-header" class="tab-panel">
+      <div class="panel-card">
+        <div class="panel-header">
+          <span class="panel-title">Container Header Fields & Invariants</span>
+        </div>
+        <div class="data-table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Offset</th>
+                <th>Size</th>
+                <th>Field Name</th>
+                <th>Raw Hex</th>
+                <th>Interpreted Value</th>
+                <th>Specification Rule</th>
+              </tr>
+            </thead>
+            <tbody id="header-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 4: Overlay Simulator -->
+    <section id="tab-overlay" class="tab-panel">
+      <div class="panel-card">
+        <div class="panel-header">
+          <span class="panel-title">libSceFios2 Overlay Mount Resolution Simulator</span>
+          <button id="btn-reset-overlays" class="btn btn-sm">Reset Overlays</button>
+        </div>
+
+        <div style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.5;">
+          Simulates <code>sceFiosOverlayAdd</code> and <code>sceFiosOverlayResolveSync</code>.
+          Virtual paths are normalized, traversal attempts (<code>../</code>) are rejected, and overlays are queried in descending order of mount priority.
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px;">
+          <div>
+            <div style="font-size: 0.78rem; font-weight: 700; color: var(--accent-cyan); text-transform: uppercase; margin-bottom: 8px;">
+              Active Overlay Layers
+            </div>
+            <div id="overlay-layers-list" class="overlay-layers-list"></div>
+          </div>
+
+          <div>
+            <div style="font-size: 0.78rem; font-weight: 700; color: var(--accent-cyan); text-transform: uppercase; margin-bottom: 8px;">
+              Virtual Path Query & Decompressor Buffer Test
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <div style="display: flex; gap: 8px;">
+                <input type="text" id="overlay-query-path" value="/app0/eboot.bin" placeholder="e.g. /app0/eboot.bin" style="flex: 1;">
+                <input type="number" id="overlay-buffer-size" value="65536" placeholder="Buffer size (bytes)" style="width: 140px;">
+                <button id="btn-resolve-path" class="btn btn-primary btn-sm">Resolve</button>
+              </div>
+
+              <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                <span class="chip" data-query-path="/app0/eboot.bin">/app0/eboot.bin</span>
+                <span class="chip" data-query-path="/app0/media/level1.pak">/app0/media/level1.pak</span>
+                <span class="chip" data-query-path="/app0/media/common.pak">/app0/media/common.pak</span>
+                <span class="chip" data-query-path="/app0/dlc/expansion1.pak">/app0/dlc/expansion1.pak</span>
+                <span class="chip" data-query-path="/app0/../../secret.prx">../../secret.prx</span>
+              </div>
+
+              <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; margin-top: 6px;">
+                Resolution Trace & Decision Log:
+              </div>
+              <div id="overlay-trace-flow" class="trace-flow">
+                <div class="trace-line">Click "Resolve" to simulate libSceFios2 overlay resolution.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 5: Hex Viewer -->
+    <section id="tab-hex" class="tab-panel">
+      <div class="panel-card">
+        <div class="panel-header">
+          <span class="panel-title">Interactive Hex Stream Inspector</span>
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <label for="hex-jump-offset" style="font-size: 0.75rem; color: var(--text-muted);">Offset:</label>
+            <input type="text" id="hex-jump-offset" placeholder="0x0000" style="width: 100px; padding: 2px 6px; font-size: 0.75rem;">
+            <button id="btn-hex-jump" class="btn btn-sm">Jump</button>
+            <button id="btn-hex-prev" class="btn btn-sm">&larr; Prev</button>
+            <button id="btn-hex-next" class="btn btn-sm">Next &rarr;</button>
+          </div>
+        </div>
+        <div id="hex-viewer" class="hex-container"></div>
+      </div>
+    </section>
+
+    <!-- Tab 6: Security & Auditor Report -->
+    <section id="tab-audit" class="tab-panel">
+      <div class="panel-card">
+        <div class="panel-header">
+          <span class="panel-title">libSceFios2 Security & Bounds Auditor</span>
+          <span id="audit-badge" class="finding-badge pass">PASS</span>
+        </div>
+        <div style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 8px;">
+          Enforces AnyPS5 libSceFios2 invariants: Magic header integrity, FourCC compression conformance, TOC & chunk table bounds, path traversal rejection, and decompression buffer overflow immunity.
+        </div>
+        <div id="audit-findings-list" class="findings-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    FIOS2 Archive Explorer &bull; PlayStation File System &amp; libSceFios2 Overlay Inspector &bull; Client-Side Web Application
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
