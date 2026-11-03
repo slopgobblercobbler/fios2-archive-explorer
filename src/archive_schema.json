@@ -1,0 +1,16 @@
+{
+  "MAGIC": "FIOS2_ARC_V1",
+  "HEADER_SIZE": 64,
+  "BLOCK_SIZE": 4096,
+  "FLAGS": {
+    "COMPRESSED": 1,
+    "ENCRYPTED": 2,
+    "EXTENDED_INODES": 4
+  },
+  "CHUNK_TYPES": {
+    "RAW": 0,
+    "ZLIB": 1,
+    "OODLE_KRAKEN": 2,
+    "OODLE_LEVIATHAN": 3
+  }
+}
