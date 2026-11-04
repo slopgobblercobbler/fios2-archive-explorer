@@ -1,0 +1,6 @@
+{
+  "volume_magic": "F2VOL",
+  "block_size_bytes": 4096,
+  "max_volume_size_tb": 16,
+  "root_inode_index": 1
+}
