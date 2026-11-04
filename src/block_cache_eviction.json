@@ -1,0 +1,5 @@
+{
+  "eviction_algorithm": "LRU",
+  "cache_capacity_blocks": 4096,
+  "dirty_writeback_threshold_percent": 80
+}
