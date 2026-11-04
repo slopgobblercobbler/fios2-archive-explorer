@@ -1,0 +1,5 @@
+{
+  "sector_alignment_bytes": 512,
+  "page_alignment_bytes": 4096,
+  "direct_memory_alignment_bytes": 16384
+}
