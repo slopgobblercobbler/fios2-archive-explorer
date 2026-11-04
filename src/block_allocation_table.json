@@ -1,0 +1,6 @@
+{
+  "extent_start_block_offset": 0,
+  "extent_block_count_offset": 4,
+  "extent_flags_offset": 8,
+  "entry_size_bytes": 16
+}
