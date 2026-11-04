@@ -1,0 +1,5 @@
+{
+  "bucket_count": 1024,
+  "eviction_policy": "LRU",
+  "max_cached_nodes": 65536
+}
