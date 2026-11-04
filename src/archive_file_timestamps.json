@@ -1,0 +1,5 @@
+{
+  "epoch_base_year": 1970,
+  "resolution_nanoseconds": 1000,
+  "supports_posix_utimes": true
+}
