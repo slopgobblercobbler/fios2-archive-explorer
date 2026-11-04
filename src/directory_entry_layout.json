@@ -1,0 +1,7 @@
+{
+  "inode_id_offset": 0,
+  "file_size_offset": 8,
+  "entry_name_length_offset": 16,
+  "creation_time_offset": 20,
+  "flags_offset": 28
+}
