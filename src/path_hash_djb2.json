@@ -1,0 +1,5 @@
+{
+  "algorithm": "djb2",
+  "initial_hash": 5381,
+  "hash_multiplier": 33
+}
