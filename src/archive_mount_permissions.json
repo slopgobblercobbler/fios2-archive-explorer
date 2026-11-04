@@ -1,0 +1,7 @@
+{
+  "PERM_READ": 1,
+  "PERM_WRITE": 2,
+  "PERM_EXEC": 4,
+  "PERM_SEEK": 8,
+  "PERM_SYNC": 16
+}
