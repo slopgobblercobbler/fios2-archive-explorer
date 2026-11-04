@@ -1,0 +1,6 @@
+{
+  "magic": "SDAT",
+  "version": 1,
+  "iv_offset": 16,
+  "iv_length": 16
+}
