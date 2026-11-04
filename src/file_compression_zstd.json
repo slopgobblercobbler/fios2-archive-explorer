@@ -1,0 +1,5 @@
+{
+  "algorithm": "zstd",
+  "default_level": 3,
+  "window_log_max": 27
+}
