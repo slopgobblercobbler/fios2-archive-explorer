@@ -1,0 +1,5 @@
+{
+  "encoding": "utf-8",
+  "max_target_length_bytes": 1024,
+  "allow_relative_targets": true
+}
