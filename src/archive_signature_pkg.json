@@ -1,0 +1,10 @@
+{
+  "magic": [
+    127,
+    67,
+    78,
+    84
+  ],
+  "content_id_offset": 64,
+  "content_id_length": 36
+}
