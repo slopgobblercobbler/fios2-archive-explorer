@@ -1,0 +1,5 @@
+{
+  "header_magic": "F2CK",
+  "header_size_bytes": 32,
+  "crc32_checksum_offset": 28
+}
