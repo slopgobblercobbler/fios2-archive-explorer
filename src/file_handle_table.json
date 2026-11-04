@@ -1,0 +1,5 @@
+{
+  "max_open_handles": 512,
+  "handle_id_base": 1000,
+  "handle_recycling": "fifo"
+}
