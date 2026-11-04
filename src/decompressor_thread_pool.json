@@ -1,0 +1,6 @@
+{
+  "default_worker_threads": 4,
+  "max_worker_threads": 16,
+  "queue_depth": 64,
+  "task_timeout_ms": 5000
+}
