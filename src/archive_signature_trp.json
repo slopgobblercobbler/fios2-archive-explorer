@@ -1,0 +1,10 @@
+{
+  "magic": [
+    220,
+    162,
+    77,
+    0
+  ],
+  "header_size_bytes": 64,
+  "element_count_offset": 8
+}
