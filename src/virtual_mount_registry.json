@@ -1,0 +1,5 @@
+{
+  "max_virtual_mounts": 32,
+  "overlay_precedence": "highest_priority_first",
+  "default_timeout_ms": 10000
+}
