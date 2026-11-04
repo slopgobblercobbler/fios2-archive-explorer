@@ -1,0 +1,7 @@
+{
+  "UNMOUNTED": 0,
+  "MOUNTING": 1,
+  "MOUNTED": 2,
+  "UNMOUNTING": 3,
+  "ERROR": 4
+}
