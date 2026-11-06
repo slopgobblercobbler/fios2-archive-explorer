@@ -1,0 +1,5 @@
+{
+  "cache_line_bytes": 64,
+  "memory_page_bytes": 4096,
+  "direct_io_min_alignment": 4096
+}
