@@ -1,0 +1,5 @@
+{
+  "PFS_CSUM_NONE": 0,
+  "PFS_CSUM_CRC32": 1,
+  "PFS_CSUM_HMAC_SHA256": 2
+}
