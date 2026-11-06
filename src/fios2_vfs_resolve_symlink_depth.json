@@ -1,0 +1,5 @@
+{
+  "max_symlink_traversals": 32,
+  "loop_detection_errno": "ELOOP",
+  "dangling_link_errno": "ENOENT"
+}
