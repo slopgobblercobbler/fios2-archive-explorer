@@ -1,0 +1,6 @@
+{
+  "algorithm": "FNV-1a-64",
+  "prime": "0x100000001B3",
+  "offset_basis": "0xCBF29CE484222325",
+  "case_folding": "ASCII_UPPERCASE"
+}
