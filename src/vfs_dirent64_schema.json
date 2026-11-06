@@ -1,0 +1,8 @@
+{
+  "d_ino_offset": 0,
+  "d_off_offset": 8,
+  "d_reclen_offset": 16,
+  "d_type_offset": 18,
+  "d_name_offset": 19,
+  "record_alignment": 8
+}
