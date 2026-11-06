@@ -1,0 +1,6 @@
+{
+  "FIOS2_LOCK_NONE": 0,
+  "FIOS2_LOCK_SHARED": 1,
+  "FIOS2_LOCK_EXCLUSIVE": 2,
+  "lock_timeout_infinite": -1
+}
