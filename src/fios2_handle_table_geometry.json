@@ -1,0 +1,5 @@
+{
+  "max_system_handles": 4096,
+  "max_process_handles": 1024,
+  "handle_slot_bytes": 64
+}
