@@ -1,0 +1,6 @@
+{
+  "magic": "0x20130325",
+  "inode_block_size": 4096,
+  "root_inode_index": 2,
+  "supports_sha256_tree": true
+}
