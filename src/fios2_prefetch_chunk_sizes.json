@@ -1,0 +1,5 @@
+{
+  "default_prefetch_window_bytes": 262144,
+  "max_read_ahead_bytes": 1048576,
+  "min_prefetch_threshold_bytes": 65536
+}
