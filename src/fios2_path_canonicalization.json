@@ -1,0 +1,6 @@
+{
+  "strip_redundant_slashes": true,
+  "resolve_relative_dots": true,
+  "case_sensitive_ps5": true,
+  "max_symlink_depth": 32
+}
