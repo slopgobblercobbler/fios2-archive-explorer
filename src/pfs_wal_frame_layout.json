@@ -1,0 +1,6 @@
+{
+  "frame_header_size": 32,
+  "magic": "0x57414C31",
+  "checksum_algorithm": "CRC32C",
+  "atomic_flush_support": true
+}
