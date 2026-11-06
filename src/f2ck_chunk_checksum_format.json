@@ -1,0 +1,6 @@
+{
+  "signature": "F2CK",
+  "sha256_hash_length": 32,
+  "chunk_alignment": 4096,
+  "header_size_bytes": 64
+}
