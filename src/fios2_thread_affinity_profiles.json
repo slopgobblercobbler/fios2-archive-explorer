@@ -1,0 +1,5 @@
+{
+  "affinity_io_worker": "0x0002",
+  "affinity_decompression_worker": "0x0004",
+  "worker_priority": 250
+}
