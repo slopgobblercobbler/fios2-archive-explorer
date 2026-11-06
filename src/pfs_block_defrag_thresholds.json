@@ -1,0 +1,5 @@
+{
+  "free_extent_min_blocks": 16,
+  "fragmentation_limit_ratio": 0.35,
+  "target_contiguous_blocks": 256
+}
