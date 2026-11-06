@@ -1,0 +1,5 @@
+{
+  "FIOS2_SEEK_SET": 0,
+  "FIOS2_SEEK_CUR": 1,
+  "FIOS2_SEEK_END": 2
+}
