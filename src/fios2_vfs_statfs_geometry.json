@@ -1,0 +1,6 @@
+{
+  "f_bsize": 4096,
+  "f_iosize": 65536,
+  "f_type": "PFS",
+  "f_flags": "0x00001000"
+}
