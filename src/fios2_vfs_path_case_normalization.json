@@ -1,0 +1,5 @@
+{
+  "case_folding_rule": "ASCII_TO_LOWERCASE",
+  "unicode_normalization": "NFC",
+  "strip_trailing_slashes": true
+}
