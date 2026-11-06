@@ -1,0 +1,5 @@
+{
+  "desc_size_bytes": 64,
+  "blocks_per_group": 8192,
+  "inodes_per_group": 1024
+}
