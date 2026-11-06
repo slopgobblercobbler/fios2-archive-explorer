@@ -1,0 +1,6 @@
+{
+  "zlib_chunk_size_bytes": 65536,
+  "zstd_chunk_size_bytes": 131072,
+  "deflate_window_bits": 15,
+  "max_concurrent_decompressors": 16
+}
