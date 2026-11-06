@@ -1,0 +1,6 @@
+{
+  "standard_sector_size": 512,
+  "optical_disc_cluster": 65536,
+  "hdd_cluster_size": 4096,
+  "nvme_alignment_boundary": 16384
+}
