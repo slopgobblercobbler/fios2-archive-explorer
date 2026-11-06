@@ -1,0 +1,6 @@
+{
+  "min_chunk_bytes": 65536,
+  "max_chunk_bytes": 1048576,
+  "ring_buffer_slots": 4,
+  "zlib_window_bits": 15
+}
