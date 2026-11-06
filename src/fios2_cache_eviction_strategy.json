@@ -1,0 +1,6 @@
+{
+  "EVICTION_LRU": 1,
+  "EVICTION_LFU": 2,
+  "EVICTION_CLOCK": 3,
+  "default_cache_capacity_mb": 64
+}
