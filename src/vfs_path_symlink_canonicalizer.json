@@ -1,0 +1,5 @@
+{
+  "max_symlink_depth": 32,
+  "detect_cycles": true,
+  "strict_root_confinement": true
+}
