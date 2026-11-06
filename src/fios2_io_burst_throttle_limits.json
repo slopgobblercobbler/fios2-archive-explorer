@@ -1,0 +1,4 @@
+{
+  "max_burst_bytes_sec": 268435456,
+  "refill_period_ms": 10
+}
