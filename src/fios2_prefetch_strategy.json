@@ -1,0 +1,6 @@
+{
+  "PREFETCH_SEQUENTIAL": 1,
+  "PREFETCH_STRIDED": 2,
+  "PREFETCH_DEMAND": 3,
+  "default_lookahead_blocks": 8
+}
