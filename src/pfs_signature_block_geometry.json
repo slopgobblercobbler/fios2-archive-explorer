@@ -1,0 +1,6 @@
+{
+  "sig_block_offset": 4096,
+  "sha256_digest_bytes": 32,
+  "rsa_sig_bytes": 256,
+  "public_key_exponent": 65537
+}
