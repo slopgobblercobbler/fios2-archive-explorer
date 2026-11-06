@@ -1,0 +1,7 @@
+{
+  "PRIO_IDLE": 0,
+  "PRIO_BACKGROUND": 128,
+  "PRIO_NORMAL": 256,
+  "PRIO_URGENT": 512,
+  "description": "Fios2 async I/O worker thread priorities"
+}
