@@ -1,0 +1,5 @@
+{
+  "canonicalize_parent_traversal": true,
+  "strict_root_boundary": true,
+  "max_depth": 32
+}
