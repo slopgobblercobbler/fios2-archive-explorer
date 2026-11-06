@@ -1,0 +1,5 @@
+{
+  "worker_thread_priority": 250,
+  "io_dispatcher_priority": 100,
+  "completion_thread_priority": 80
+}
