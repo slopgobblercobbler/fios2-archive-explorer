@@ -1,0 +1,6 @@
+{
+  "PFS_S_IRUSR": "0x0100",
+  "PFS_S_IWUSR": "0x0080",
+  "PFS_S_IXUSR": "0x0040",
+  "PFS_S_IRWXU": "0x01C0"
+}
