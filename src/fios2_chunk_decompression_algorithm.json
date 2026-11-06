@@ -1,0 +1,6 @@
+{
+  "chunk_algo_zlib": 1,
+  "chunk_algo_lz4": 2,
+  "chunk_algo_oodle": 3,
+  "max_uncompressed_chunk_bytes": 65536
+}
