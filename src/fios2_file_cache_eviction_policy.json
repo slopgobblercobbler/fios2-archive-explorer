@@ -1,0 +1,6 @@
+{
+  "policy": "LRU_APPROXIMATE",
+  "lru_clock_hands": 2,
+  "high_watermark_ratio": 0.9,
+  "low_watermark_ratio": 0.75
+}
