@@ -1,0 +1,6 @@
+{
+  "FIOS2_LOCK_SHARED": 1,
+  "FIOS2_LOCK_EXCLUSIVE": 2,
+  "FIOS2_LOCK_NONBLOCKING": 4,
+  "max_concurrent_shared_locks": 1024
+}
