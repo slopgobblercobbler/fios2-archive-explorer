@@ -1,0 +1,6 @@
+{
+  "DEVICE_TYPE_HDD": 1,
+  "DEVICE_TYPE_SSD": 2,
+  "DEVICE_TYPE_BD": 3,
+  "DEVICE_TYPE_USB": 4
+}
