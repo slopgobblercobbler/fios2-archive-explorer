@@ -1,0 +1,5 @@
+{
+  "block_size_bytes": 4096,
+  "bits_per_byte": 8,
+  "blocks_per_bitmap_page": 32768
+}
