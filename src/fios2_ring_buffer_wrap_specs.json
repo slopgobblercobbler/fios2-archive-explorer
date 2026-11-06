@@ -1,0 +1,5 @@
+{
+  "ring_capacity_slots": 512,
+  "wrap_mask": 511,
+  "concurrency_model": "single_producer_single_consumer_lockfree"
+}
