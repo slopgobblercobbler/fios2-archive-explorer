@@ -1,0 +1,6 @@
+{
+  "F_RDLCK": 1,
+  "F_WRLCK": 2,
+  "F_UNLCK": 3,
+  "description": "POSIX flock/fcntl advisory record locking"
+}
