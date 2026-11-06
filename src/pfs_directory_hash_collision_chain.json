@@ -1,0 +1,4 @@
+{
+  "max_chain_depth": 16,
+  "collision_strategy": "LINEAR_PROBING"
+}
