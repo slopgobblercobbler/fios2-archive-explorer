@@ -1,0 +1,6 @@
+{
+  "max_extents_per_node": 64,
+  "extent_address_bits": 48,
+  "extent_length_bits": 16,
+  "b_plus_tree_fanout": 64
+}
