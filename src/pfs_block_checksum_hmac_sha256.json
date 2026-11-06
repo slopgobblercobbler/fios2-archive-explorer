@@ -1,0 +1,6 @@
+{
+  "hash_name": "HMAC_SHA256",
+  "key_size_bytes": 32,
+  "digest_bytes": 32,
+  "authenticated_encryption": true
+}
