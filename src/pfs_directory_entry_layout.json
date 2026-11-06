@@ -1,0 +1,7 @@
+{
+  "inode_number_offset": 0,
+  "record_len_offset": 4,
+  "file_type_offset": 6,
+  "name_len_offset": 7,
+  "max_filename_bytes": 255
+}
