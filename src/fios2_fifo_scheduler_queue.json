@@ -1,0 +1,5 @@
+{
+  "queue_policy": "STRICT_PRIORITY_FIFO",
+  "num_priority_bands": 4,
+  "quantum_ms": 10
+}
