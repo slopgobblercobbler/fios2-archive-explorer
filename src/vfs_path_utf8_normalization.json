@@ -1,0 +1,6 @@
+{
+  "normalization_form": "NFC",
+  "reject_unpaired_surrogates": true,
+  "max_path_length": 1024,
+  "max_component_length": 255
+}
