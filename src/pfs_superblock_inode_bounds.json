@@ -1,0 +1,6 @@
+{
+  "min_inodes": 16,
+  "max_inodes": 1048576,
+  "inode_size_bytes": 128,
+  "description": "PFS superblock filesystem inode allocation bounds"
+}
