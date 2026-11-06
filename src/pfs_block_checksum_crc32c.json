@@ -1,0 +1,6 @@
+{
+  "polynomial": "0x82F63B78",
+  "initial_value": "0xFFFFFFFF",
+  "final_xor": "0xFFFFFFFF",
+  "sse42_hardware_accelerated": true
+}
