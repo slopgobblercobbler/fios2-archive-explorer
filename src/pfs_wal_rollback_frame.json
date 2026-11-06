@@ -1,0 +1,6 @@
+{
+  "wal_type": "TRANSACTION_ROLLBACK",
+  "frame_magic": "0x524F4C4C",
+  "max_entries": 128,
+  "atomic_undo": true
+}
