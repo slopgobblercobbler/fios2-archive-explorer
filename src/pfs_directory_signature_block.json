@@ -1,0 +1,6 @@
+{
+  "magic": "PFSIG",
+  "sig_algorithm": "RSA_PSS_SHA256",
+  "key_size_bits": 2048,
+  "header_version": 2
+}
