@@ -1,0 +1,5 @@
+{
+  "ring_capacity": 512,
+  "entry_size_bytes": 64,
+  "memory_alignment": 64
+}
