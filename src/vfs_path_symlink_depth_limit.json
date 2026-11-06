@@ -1,0 +1,6 @@
+{
+  "SYMLOOP_MAX": 32,
+  "PATH_MAX": 1024,
+  "NAME_MAX": 255,
+  "description": "FreeBSD VFS path resolution limit constants"
+}
