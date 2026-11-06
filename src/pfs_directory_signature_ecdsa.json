@@ -1,0 +1,6 @@
+{
+  "curve": "NIST_P256",
+  "signature_format": "IEEE_P1363",
+  "hash": "SHA-256",
+  "signature_length_bytes": 64
+}
