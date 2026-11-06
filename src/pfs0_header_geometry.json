@@ -1,0 +1,7 @@
+{
+  "signature": "PFS0",
+  "file_entry_size": 24,
+  "magic_offset": 0,
+  "file_count_offset": 4,
+  "string_table_size_offset": 8
+}
