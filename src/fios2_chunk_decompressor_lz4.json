@@ -1,0 +1,6 @@
+{
+  "compression_format": "LZ4_RAW",
+  "max_block_size": 65536,
+  "prefix_buffer_bytes": 65536,
+  "streaming_mode": true
+}
